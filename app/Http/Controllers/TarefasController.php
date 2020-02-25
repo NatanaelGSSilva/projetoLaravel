@@ -79,5 +79,6 @@ class TarefasController extends Controller
         ]);
 
         return redirect()->route('tarefas.list');
+        //retorno
     }
 }
