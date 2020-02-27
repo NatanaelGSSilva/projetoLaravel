@@ -5,6 +5,8 @@
 @section('content')
 <h1>Configurações </h1>
 
+<a href="/logout">Sair</a>
+
     
     @alert
         Alguma frase qualquer

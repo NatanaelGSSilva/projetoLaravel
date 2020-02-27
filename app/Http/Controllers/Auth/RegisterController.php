@@ -57,7 +57,7 @@ class RegisterController extends Controller
 
         $user = $this->create($data);
         Auth::login($user);// logou o usuario
-        return redirect()->route('config');// mandar para uma tela
+        return redirect()->route('config.index');// mandar para uma tela
     }
 
     /**

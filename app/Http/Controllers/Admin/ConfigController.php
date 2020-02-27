@@ -6,6 +6,9 @@ use App\http\Controllers\Controller;
 use Illuminate\Http\Request;
 class ConfigController extends Controller{
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index(Request $request){
         $nome = "Natanael";
         $idade = 90;
