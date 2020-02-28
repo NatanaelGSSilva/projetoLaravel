@@ -4,10 +4,9 @@
 
 @section('content')
 <h1>Configurações </h1>
+Ola, {{$nome}} - <a href="/logout">Sair</a>
 
-<a href="/logout">Sair</a>
 
-    
     @alert
         Alguma frase qualquer
     @endalert
@@ -23,7 +22,7 @@
     Não Há Ingredientes
     @endif
 
-
+@if($showform)
 <form action="" method="POST">
  @csrf
     Nome:<br/>
@@ -38,7 +37,7 @@
 
 
 </form>
-
+@endif
 
 <a href="/config/info">Informações</a>
 @endsection

@@ -25,6 +25,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //usar o gate (porta para o usuario)
+        Gate::define('see-form', function($user){
+            return $user->admin ===1 ?true :false; // outra forma de fazer
+            // if($user->admin ===1 ){
+            //     return true;
+            // }else{
+            //     return false;
+            // }
+        });
     }
 }

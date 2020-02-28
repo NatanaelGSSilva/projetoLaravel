@@ -41,17 +41,26 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function index(){
-        return view('login');
+    public function index(Request $request){
+        $tries = $request->session()->get('login_tries',0);//contabilizaçãode quantas tentativas seram feitas pegando informações da sessao
+        return view('login', [
+            'tries' => $tries
+        ]);
     }
 
     public  function authenticate(Request $request){
         // processo de login pegar os campos de email e senha
         $creds = $request->only(['email','password']);
 
+        
+        // $request->session()->forget('login_tries'); destruir uma sessão
         if(Auth::attempt($creds)){// fazer a tentativa de login
+            $request->session()->put('login_tries',0);// acertou subtitui por 0
                 return  redirect()->route('config.index');
         }else{
+            $tries = intval($request->session()->get('login_tries',0));
+            // $tries++;
+            $request->session()->put('login_tries',++$tries);// saber a quantidade de tentativas
             return redirect()->route('login')->with(
                 'warning','E-mail e/ou senha inválidos.'
             );
